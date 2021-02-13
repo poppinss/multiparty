@@ -666,7 +666,7 @@ function flushEmitQueue(self) {
 function handlePart(self, partStream) {
   beginFlush(self);
   var emitAndReleaseHold = holdEmitQueue(self, partStream);
-  partStream.on('end', function() {
+  partStream.on('close', function() {
     endFlush(self);
   });
   emitAndReleaseHold(function() {
