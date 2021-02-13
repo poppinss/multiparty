@@ -1,4 +1,5 @@
-# multiparty
+# Multiparty
+> Forked from [pillarjs/multiparty](https://github.com/pillarjs/multiparty)
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
@@ -6,11 +7,11 @@
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-Parse http requests with content-type `multipart/form-data`, also known as file uploads.
+Parses http requests with content-type `multipart/form-data`, also known as file uploads.
 
-See also [busboy](https://github.com/mscdex/busboy) - a
-[faster](https://github.com/mscdex/dicer/wiki/Benchmarks) alternative
-which may be worth looking into.
+## Fork reasons
+
+- The fork uses the `part.on('close')` event instead of the `part.on('end')`. The `end` event is not invoked in case of an error and hence the entire stream is hanging.
 
 ## Installation
 
@@ -19,7 +20,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```
-npm install multiparty
+npm install @poppiss/multiparty
 ```
 
 ## Usage
