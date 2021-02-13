@@ -1,12 +1,8 @@
 {
-  "name": "multiparty",
+  "name": "@poppinss/multiparty",
+  "version": "1.0.0",
   "description": "multipart/form-data parser which supports streaming",
-  "version": "4.2.2",
-  "author": "Andrew Kelley <superjoe30@gmail.com>",
-  "contributors": [
-    "Douglas Christopher Wilson <doug@somethingdoug.com>",
-    "Felix Geisendörfer <felix@debuggable.com>"
-  ],
+  "main": "index.js",
   "license": "MIT",
   "keywords": [
     "file",
@@ -15,7 +11,6 @@
     "stream",
     "s3"
   ],
-  "repository": "pillarjs/multiparty",
   "dependencies": {
     "http-errors": "~1.8.0",
     "safe-buffer": "5.2.1",
@@ -38,13 +33,23 @@
     "README.md",
     "index.js"
   ],
-  "engines": {
-    "node": ">= 0.10"
-  },
   "scripts": {
     "lint": "eslint --plugin markdown --ext js,md .",
     "test": "mocha --reporter spec --bail --check-leaks test/",
     "test-ci": "nyc --reporter=text npm test",
     "test-cov": "nyc --reporter=html --reporter=text npm test"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poppinss/multiparty.git"
+  },
+  "author": "virk,poppinss",
+  "bugs": {
+    "url": "https://github.com/poppinss/multiparty/issues"
+  },
+  "homepage": "https://github.com/poppinss/multiparty#readme"
 }
