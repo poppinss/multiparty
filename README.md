@@ -13,6 +13,10 @@ Parses http requests with content-type `multipart/form-data`, also known as file
 
 - The fork uses the `part.on('close')` event instead of the `part.on('end')`. The `end` event is not invoked in case of an error and hence the entire stream is hanging.
 
+## What's changed?
+
+- Updated tests to use the latest version of `superagent`. It results in some breaking tests, since the latest version of superagent emits the error event in case of non 2xx response.
+
 ## Installation
 
 This is a [Node.js](https://nodejs.org/en/) module available through the
