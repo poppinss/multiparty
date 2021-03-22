@@ -1,6 +1,6 @@
 {
   "name": "@poppinss/multiparty",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "multipart/form-data parser which supports streaming",
   "main": "index.js",
   "license": "MIT",
