@@ -3,9 +3,7 @@
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
 
 Parses http requests with content-type `multipart/form-data`, also known as file uploads.
 
@@ -268,12 +266,10 @@ stream uploads to disk for you.
 
 [MIT](LICENSE)
 
-[coveralls-image]: https://badgen.net/coveralls/c/github/pillarjs/multiparty/master
-[coveralls-url]: https://coveralls.io/r/pillarjs/multiparty?branch=master
-[node-version-image]: https://badgen.net/npm/node/multiparty
-[node-version-url]: https://nodejs.org/en/download
-[npm-downloads-image]: https://badgen.net/npm/dm/multiparty
-[npm-url]: https://npmjs.org/package/multiparty
-[npm-version-image]: https://badgen.net/npm/v/multiparty
-[travis-image]: https://badgen.net/travis/pillarjs/multiparty/master
-[travis-url]: https://travis-ci.org/pillarjs/multiparty
+[npm-downloads-image]: https://badgen.net/npm/dm/@poppinss/multiparty
+[npm-url]: https://npmjs.org/package/@poppinss/multiparty
+
+[npm-version-image]: https://badgen.net/npm/v/@poppinss/multiparty
+
+[gh-workflow-image]: https://img.shields.io/github/workflow/status/poppinss/multiparty/test?style=for-the-badge
+[gh-workflow-url]: https://github.com/poppinss/multiparty/actions/workflows/test.yml "Github action"
