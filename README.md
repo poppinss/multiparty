@@ -3,7 +3,7 @@
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][gh-workflow-image]][gh-workflow-url]
 
 Parses http requests with content-type `multipart/form-data`, also known as file uploads.
 
@@ -266,10 +266,10 @@ stream uploads to disk for you.
 
 [MIT](LICENSE)
 
-[npm-downloads-image]: https://badgen.net/npm/dm/@poppinss/multiparty
+[npm-downloads-image]: https://img.shields.io/npm/dm/@poppinss/multiparty?style=for-the-badge
 [npm-url]: https://npmjs.org/package/@poppinss/multiparty
 
-[npm-version-image]: https://badgen.net/npm/v/@poppinss/multiparty
+[npm-version-image]: https://img.shields.io/npm/v/@poppinss/multiparty?style=for-the-badge
 
 [gh-workflow-image]: https://img.shields.io/github/workflow/status/poppinss/multiparty/test?style=for-the-badge
 [gh-workflow-url]: https://github.com/poppinss/multiparty/actions/workflows/test.yml "Github action"
