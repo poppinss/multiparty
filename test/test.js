@@ -836,12 +836,7 @@ var standaloneTests = [
         req.field('b', val);
         req.field('c', val);
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Payload Too Large')
+          assert.strictEqual(err.message, 'Payload Too Large')
         });
         req.end();
         req.on('response', function(res) {
@@ -926,12 +921,7 @@ var standaloneTests = [
         req.attach('file0', fixture('pf1y5.png'), 'SOG1.JPG');
         req.attach('file1', fixture('pf1y5.png'), 'SOG2.JPG');
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Payload Too Large')
+          assert.strictEqual(err.message, 'Payload Too Large')
         });
         req.end();
         req.on('response', function(res) {
@@ -983,12 +973,7 @@ var standaloneTests = [
         req.attach('file0', fixture('pf1y5.png'), 'SOG1.JPG');
         req.attach('file1', fixture('pf1y5.png'), 'SOG1.JPG');
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Payload Too Large')
+          assert.strictEqual(err.message, 'Payload Too Large')
         });
         req.end();
         req.on('response', function(res) {
@@ -1070,12 +1055,7 @@ var standaloneTests = [
         var url = 'http://localhost:' + server.address().port + '/upload';
         var req = superagent.post(url);
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Unsupported Media Type')
+          assert.strictEqual(err.message, 'Unsupported Media Type')
         });
         req.end();
         req.on('response', function(res) {
@@ -1108,12 +1088,7 @@ var standaloneTests = [
         req.set('Content-Type', 'application/json');
         req.write('{}');
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Unsupported Media Type')
+          assert.strictEqual(err.message, 'Unsupported Media Type')
         });
         req.end();
         req.on('response', function(res) {
@@ -1145,12 +1120,7 @@ var standaloneTests = [
         var req = superagent.post(url);
         req.attach('file0', fixture('pf1y5.png'), 'SOG1.JPG');
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 4xx as errors
-           */
-          assert.equal(err.message, 'Bad Request')
+          assert.strictEqual(err.message, 'Bad Request')
         });
         req.end();
         req.req.setHeader('Content-Type', 'multipart/form-data')
@@ -1236,12 +1206,7 @@ var standaloneTests = [
         var req = superagent.post(url);
         req.attach('file0', fixture('pf1y5.png'), 'SOG1.JPG');
         req.on('error', function(err) {
-          /**
-           * @note
-           * Changed from multiparty, since latest version of superagent
-           * considers 5xx as errors
-           */
-          assert.equal(err.message, 'Internal Server Error')
+          assert.strictEqual(err.message, 'Internal Server Error')
         });
         req.end();
         req.on('response', function(res) {
