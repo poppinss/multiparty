@@ -1360,7 +1360,7 @@ describe('multiparty', function () {
   before(function (done) {
     rimraf(TMP_PATH, function (err) {
       if (err) return done(err)
-      mkdirp(TMP_PATH).then(() => done()).catch(done)
+        mkdirp(TMP_PATH).then(() => done()).catch(done)
     })
   })
 
