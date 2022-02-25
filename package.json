@@ -3,6 +3,10 @@
   "version": "1.0.2",
   "description": "multipart/form-data parser which supports streaming",
   "main": "index.js",
+  "contributors": [
+    "Douglas Christopher Wilson <doug@somethingdoug.com>",
+    "Felix Geisendörfer <felix@debuggable.com>"
+  ],
   "license": "MIT",
   "keywords": [
     "file",
@@ -20,7 +24,7 @@
     "eslint": "7.32.0",
     "eslint-plugin-markdown": "2.2.1",
     "mkdirp": "0.5.5",
-    "mocha": "9.1.3",
+    "mocha": "9.1.4",
     "nyc": "15.1.0",
     "pend": "1.2.0",
     "require-all": "3.0.0",
