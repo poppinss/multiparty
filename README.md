@@ -271,5 +271,5 @@ stream uploads to disk for you.
 
 [npm-version-image]: https://img.shields.io/npm/v/@poppinss/multiparty?style=for-the-badge
 
-[gh-workflow-image]: https://img.shields.io/github/workflow/status/poppinss/multiparty/test?style=for-the-badge
+[gh-workflow-image]: https://img.shields.io/github/actions/workflow/status/poppinss/multiparty/test.yml?style=for-the-badge
 [gh-workflow-url]: https://github.com/poppinss/multiparty/actions/workflows/test.yml "Github action"
