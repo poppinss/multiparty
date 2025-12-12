@@ -4,10 +4,10 @@ permissions:
   contents: write
   id-token: write
 jobs:
-  checks:
-    uses: ./.github/workflows/checks.yml
+  test:
+    uses: ./.github/workflows/test.yml
   release:
-    needs: checks
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
