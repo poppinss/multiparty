@@ -9,13 +9,12 @@
 'use strict'
 
 var createError = require('http-errors')
-var uid = require('uid-safe')
 var stream = require('stream');
 var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var os = require('os');
-var Buffer = require('safe-buffer').Buffer
+var crypto = require('crypto');
 var StringDecoder = require('string_decoder').StringDecoder;
 
 var START = 0;
@@ -47,6 +46,20 @@ var LAST_BOUNDARY_SUFFIX_LEN = 4; // --\r\n
 var NAME_PARAM_RE = /\bname=(?:"([^"]+)"|([!#$%&'*+.0-9A-Z^_`a-z|~-]+))/i
 
 exports.Form = Form;
+
+/**
+ * Generates a URL safe random string of a given size
+ */
+function randomUid(size) {
+  var bits = (size + 1) * 6
+  var buffer = crypto.randomBytes(Math.ceil(bits / 8))
+  return Buffer.from(buffer)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '')
+    .slice(0, size)
+}
 
 util.inherits(Form, stream.Writable);
 function Form(options) {
@@ -819,7 +832,7 @@ function setUpParser(self, boundary) {
 
 function uploadPath(baseDir, filename) {
   var ext = path.extname(filename).replace(FILE_EXT_RE, '$1');
-  var name = uid.sync(18) + ext
+  var name = randomUid(18) + ext
   return path.join(baseDir, name);
 }
 

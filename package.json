@@ -16,9 +16,7 @@
     "s3"
   ],
   "dependencies": {
-    "http-errors": "^2.0.0",
-    "safe-buffer": "5.2.1",
-    "uid-safe": "2.1.5"
+    "http-errors": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^8.9.0",

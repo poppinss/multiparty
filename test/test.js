@@ -1,7 +1,6 @@
 
 var requireAll = require('require-all')
 
-var Buffer = require('safe-buffer').Buffer;
 var crypto = require('crypto');
 var path = require('path');
 var Pend = require('pend');
@@ -12,7 +11,6 @@ var net = require('net');
 var stream = require('stream');
 var assert = require('assert');
 var multiparty = require('../');
-var mkdirp = require('mkdirp');
 var superagent = require('superagent');
 var FIXTURE_PATH = path.join(__dirname, 'fixture');
 var TMP_PATH = path.join(__dirname, 'tmp');
@@ -131,6 +129,7 @@ var standaloneTests = [
         var client = net.connect(server.address().port);
         client.write(
           'POST / HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 70\r\n' +
           'Content-Type: multipart/form-data; boundary=foo\r\n\r\n')
         client.end();
@@ -147,17 +146,21 @@ var standaloneTests = [
         '\r\nThis is the file\r\n' +
         '--foo--\r\n'
       var client = null
+      var error = null
       var server = http.createServer(function (req, res) {
         var form = new multiparty.Form()
 
         form.on('close', function () {
           client.destroy()
           setTimeout(function () {
+            assert.ifError(error)
             server.close(cb)
           }, 100)
         })
 
-        form.on("error", (_) => {});
+        form.on('error', function (err) {
+          error = err
+        })
 
         form.on('part', function (part) {
           part.resume()
@@ -168,6 +171,7 @@ var standaloneTests = [
         client = net.connect(server.address().port)
         client.write(
           'POST / HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: ' + Buffer.byteLength(body) + '\r\n' +
           'Content-Type: multipart/form-data; boundary=foo\r\n\r\n' +
           body)
@@ -529,6 +533,7 @@ var standaloneTests = [
         client = net.connect(server.address().port);
 
         client.write('POST /upload HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 728\r\n' +
           'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryvfUZhxgsZDO7FXLF\r\n' +
           '\r\n' +
@@ -575,6 +580,7 @@ var standaloneTests = [
         client = net.connect(server.address().port);
 
         client.write('POST /upload HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 678\r\n' +
           'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryvfUZhxgsZDO7FXLF\r\n' +
           '\r\n' +
@@ -642,6 +648,7 @@ var standaloneTests = [
         client = net.connect(server.address().port);
 
         client.write('POST /upload HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 726\r\n' +
           'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryvfUZhxgsZDO7FXLF\r\n' +
           '\r\n' +
@@ -703,6 +710,7 @@ var standaloneTests = [
 
         client.write(
           'POST /upload HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Accept: */*\r\n' +
           'Content-Type: multipart/form-data; boundary="893e5556-f402-4fec-8180-c59333354c6f"\r\n' +
           'Content-Length: 187\r\n' +
@@ -1244,6 +1252,7 @@ var standaloneTests = [
         var client = net.connect(server.address().port);
         client.write(
           'POST / HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 186\r\n' +
           'Content-Type: multipart/form-data; boundary=--WebKitFormBoundaryvfUZhxgsZDO7FXLF\r\n' +
           '\r\n' +
@@ -1301,6 +1310,7 @@ var standaloneTests = [
         var client = net.connect(server.address().port);
         client.end(
           'POST / HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 174\r\n' +
           'Content-Type: multipart/form-data; boundary=--bounds\r\n' +
           '\r\n' +
@@ -1341,6 +1351,7 @@ var standaloneTests = [
 
         client.write(
           'POST /upload HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Accept: */*\r\n' +
           'Content-Type: multipart/form-data; boundary="893e5556-f402-4fec-8180-c59333354c6f"\r\n' +
           'Content-Length: 217\r\n' +
@@ -1404,6 +1415,7 @@ var standaloneTests = [
         var client = net.connect(server.address().port)
         client.write(
           'POST / HTTP/1.1\r\n' +
+          'Host: localhost\r\n' +
           'Content-Length: 186\r\n' +
           'Content-Type: multipart/form-data; boundary=--WebKitFormBoundaryvfUZhxgsZDO7FXLF\r\n' +
           '\r\n' +
@@ -1422,7 +1434,7 @@ describe('multiparty', function () {
   before(function (done) {
     rimraf(TMP_PATH, function (err) {
       if (err) return done(err)
-        mkdirp(TMP_PATH).then(() => done()).catch(done)
+      fs.mkdir(TMP_PATH, done)
     })
   })
 
